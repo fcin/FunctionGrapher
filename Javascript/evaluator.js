@@ -1,32 +1,32 @@
-function Evaluator(parser)
-{
+function Evaluator(parser) {
     this.parser = parser;
 
     /**
-     * Calculates value for specified input.
-     * @param {string} input 
+     * Calculates value for specified input at x position.
+     * @param {string} input input
+     * @param {number} xCoord X position
      */
-    this.evaluate = function(input)
-    {
+    this.evaluate = function (input, xCoord) {
         input = this.parser.parse(input).split(',');
-        
+
+        // Map x variable to current coordinate.
+        input = input.map(elem => elem.toUpperCase() === 'X' ? xCoord : elem);
+
         var index = 0;
-        while(index < input.length)
-        {
+        while (index < input.length) {
             var token = input[index];
 
-            if(this.parser.isOperator(token))
-            {
-                var lastOperand = input[index - 2];
-                var lastOperand2 = input[index - 1];
+            if (this.parser.isOperator(token)) {
+                var lastOperand = parseFloat(input[index - 2]);
+                var lastOperand2 = parseFloat(input[index - 1]);
                 var result = '';
 
-                switch(token)
-                {
-                    case '+' : result = (+lastOperand) + (+lastOperand2); break;
-                    case '-' : result = (+lastOperand) - (+lastOperand2); break;
-                    case '*' : result = (+lastOperand) * (+lastOperand2); break;
-                    case '/' : result = (+lastOperand) / (+lastOperand2); break;
+                switch (token) {
+                    case '+': result = lastOperand + lastOperand2; break;
+                    case '-': result = lastOperand - lastOperand2; break;
+                    case '*': result = lastOperand * lastOperand2; break;
+                    case '/': result = lastOperand / lastOperand2; break;
+                    case '^': result = Math.pow(lastOperand, lastOperand2); break;
                 }
 
                 input.splice(index + 1, 0, result);

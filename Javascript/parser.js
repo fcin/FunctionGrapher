@@ -5,6 +5,7 @@ function Parser()
         { sign: '-', precedence: 2 },
         { sign: '*', precedence: 3 },
         { sign: '/', precedence: 3 },
+        { sign: '^', precedence: 4 },
         { sign: '(', precedence: 1 }
     ];
     
@@ -89,7 +90,7 @@ function Parser()
     function extractToken(value)
     {
         var token = '';
-        while(isNumber(value[0]))
+        while(value.length > 0 && isNumber(value[0]))
         {  
             token += value[0];
             value.splice(0, 1);
