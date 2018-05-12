@@ -6,12 +6,17 @@ var range = { minX: -10, maxX: 10,
 
 var points = 100;
 var canvasZoom = 1;
-
+var input = '';
 
 function setup()
 {
     createCanvas(canvasWidth, canvasHeight);
     frameRate(10);
+
+    input = document.getElementById('functionInput').value;
+    document.getElementById('drawBtn').addEventListener("click", function( event ) {
+        input = document.getElementById('functionInput').value;
+      }, false);
 }
 
 function draw()
@@ -19,7 +24,9 @@ function draw()
     background(255);
     drawAxis();
 
-    var input = "x^3 + 3*x^2 + 2*x";
+    if(input.trim() === '')
+        return;
+
     var evaluator = new Evaluator(new Parser());
     var interval = (Math.abs(range.minX) + Math.abs(range.maxX)) / points;
 
@@ -28,9 +35,18 @@ function draw()
     for(var index = range.minX; index < range.maxX; index += interval)
     {
         var evaluatedResult = evaluator.evaluate(input, index);
+        if(evaluatedResult.hasError)
+        {
+            document.getElementById('errorLabel').innerHTML = evaluatedResult.error;
+            return;
+        }
+        else
+        {
+            document.getElementById('errorLabel').innerHTML = '';
+        }
 
         var scaleX = ((index - range.minX) / (range.maxX - range.minX)) * (canvasWidth - 0) + 0;
-        var scaleY = canvasHeight - (((evaluatedResult - range.minY) / (range.maxY - range.minY)) * (canvasHeight - 0) + 0);
+        var scaleY = canvasHeight - (((evaluatedResult.value - range.minY) / (range.maxY - range.minY)) * (canvasHeight - 0) + 0);
 
         curveVertex(scaleX, scaleY);
     }

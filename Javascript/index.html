@@ -1,11 +1,15 @@
 <html>
 <head>
   <title>Function visualizer</title>
-  <script src="p5.min.js"></script>
-  <script src="script.js"></script>
-  <script src="parser.js"></script>
-  <script src="evaluator.js"></script>
 </head>
 <body>
+  <input type="text" id="functionInput" value="x^3 + 3*x^2 + 2*x" />
+  <button id="drawBtn">Draw</button>
+  <p style="color:red;" id="errorLabel"></p>
+
+  <script src="lib/p5.min.js"></script>
+  <script src="parser.js"></script>
+  <script src="evaluator.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

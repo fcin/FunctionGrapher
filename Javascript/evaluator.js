@@ -19,6 +19,10 @@ function Evaluator(parser) {
             if (this.parser.isOperator(token)) {
                 var lastOperand = parseFloat(input[index - 2]);
                 var lastOperand2 = parseFloat(input[index - 1]);
+
+                if(isNaN(lastOperand) || isNaN(lastOperand2))
+                    return { value: 0, error: 'Specified input is invalid', hasError: true };
+
                 var result = '';
 
                 switch (token) {
@@ -40,6 +44,6 @@ function Evaluator(parser) {
         }
 
         // Return accumulated value.
-        return input[0];
+        return { value: input[0], error: '', hasError: false };
     }
 }
