@@ -4,10 +4,11 @@
 struct Operator
 {
 private:
-	std::string m_Sign;
+	char m_Sign;
 	int m_Precedence;
 
 public:
-	inline Operator(std::string sign, int precedence) : m_Sign(sign), m_Precedence(precedence) { }
-	const std::string& GetSign() const { return m_Sign; };
+	inline Operator(char sign, int precedence) : m_Sign(sign), m_Precedence(precedence) { }
+	inline const char& GetSign() const { return m_Sign; };
+	inline const int GetPrecedence() const { return m_Precedence; };
 };

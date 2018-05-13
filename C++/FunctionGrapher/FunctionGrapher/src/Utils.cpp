@@ -1,26 +1,26 @@
 #include "Utils.h"
 
-std::vector<std::string> Utils::SplitWithoutSpaces(std::string value)
+std::vector<char> Utils::SplitWithoutSpaces(std::string value)
 {
-	std::vector<std::string> splittedValues;
+	std::vector<char> splittedValues;
 	for (unsigned int index = 0; index < value.length(); index++)
 	{
 		if (value[index] == ' ')
 			continue;
 
-		splittedValues.push_back(std::string(1, value[index]));
+		splittedValues.push_back(value[index]);
 	}
 	return splittedValues;
 }
 
-std::string Utils::ExtractToken(std::string& value)
+std::string Utils::ExtractToken(std::vector<char>& value)
 {
 	std::string token;
 
-	while (value.length() > 0 && IsNumber(value[0]))
+	while (value.size() > 0 && IsNumber(value.at(0)))
 	{
 		token += value[0];
-		value = value.substr(0, 1);
+		value.erase(value.begin());
 	}
 
 	// Not a number, so must be an operator or a variable,
@@ -28,7 +28,7 @@ std::string Utils::ExtractToken(std::string& value)
 	if (token.length() == 0)
 	{
 		token += value[0];
-		value = value.substr(0, 1);
+		value.erase(value.begin());
 	}
 
 	return token;
