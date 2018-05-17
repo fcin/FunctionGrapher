@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\CalculateResult.h" />
+    <ClInclude Include="src\Calculator.h" />
     <ClInclude Include="src\Operator.h" />
     <ClInclude Include="src\Parser.h" />
     <ClInclude Include="src\Utils.h" />
@@ -155,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FunctionGrapher.cpp" />
+    <ClCompile Include="src\Calculator.cpp" />
     <ClCompile Include="src\Parser.cpp" />
     <ClCompile Include="src\Utils.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -15,11 +15,11 @@ private:
 		Operator('/', 3)
 	};
 
-	bool IsOperator(char& token) const;
-	Operator GetOperator(char& token);
+	Operator GetOperator(std::string& token);
 	bool IsOperand(std::string& token) const;
 
 public:
 	Parser();
-	std::string Parse(std::string input);
+	std::vector<std::string> Parse(std::string input);
+	bool IsOperator(std::string& token) const;
 };

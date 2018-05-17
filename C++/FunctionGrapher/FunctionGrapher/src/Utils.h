@@ -5,7 +5,7 @@
 class Utils
 {
 private:
-	inline static bool IsNumber(char value) { return !((int)value < (int)'0' || (int)value >(int)'9'); };
+	inline static bool IsNumber(char value) { return value >= '0' && value <= '9'; };
 
 public:
 	static std::vector<char> SplitWithoutSpaces(std::string value);

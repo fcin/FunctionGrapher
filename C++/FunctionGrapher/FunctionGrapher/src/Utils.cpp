@@ -17,7 +17,7 @@ std::string Utils::ExtractToken(std::vector<char>& value)
 {
 	std::string token;
 
-	while (value.size() > 0 && IsNumber(value.at(0)))
+	while (value.size() > 0 && (IsNumber(value.at(0)) || value.at(0) == '.'))
 	{
 		token += value[0];
 		value.erase(value.begin());
