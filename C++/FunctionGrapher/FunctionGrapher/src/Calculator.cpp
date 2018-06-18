@@ -55,6 +55,14 @@ CalculateResult Calculator::CalculateForX(std::string value, double xCoord)
 					return { 0, true, "Specified expression is invalid" };
 				result = lastOperand / lastOperand2;
 			}
+			else if (token == "^")
+			{
+				result = lastOperand;
+				for (size_t index = 1; index < lastOperand2; index++)
+				{
+					result *= lastOperand;
+				}
+			}
 
 			input[index] = std::to_string(result); // replace op with result
 			input.erase(input.begin() + index - 2); // op1

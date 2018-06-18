@@ -57,7 +57,7 @@ namespace FunctionGrapher.UI
                     var currentPos = (float) index;
                     var x = axisLeft + (axisRight - axisLeft) * ((currentPos - 0) / ((float)PointsCount - 0));
                     var result = CalculateAt(_expression, x);
-                    _points.Add(new PointF(x, (float)result));
+                    _points.Add(new PointF(x, -(float)result));
                 }
             }
             catch
@@ -110,7 +110,7 @@ namespace FunctionGrapher.UI
             foreach (var point in _points)
             {
                 var x = screenLeftX + (screenRightX - screenLeftX) * ((point.X - axisLeft) / (axisRight - axisLeft));
-                var y = screenLeftY + (screenRightY - screenLeftY) * ((-point.Y - axisLeft) / (axisRight - axisLeft));
+                var y = screenLeftY + (screenRightY - screenLeftY) * ((point.Y - axisLeft) / (axisRight - axisLeft));
                 newPoints.Add(new PointF(x, y));
             }
 

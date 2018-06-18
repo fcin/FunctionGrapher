@@ -12,7 +12,8 @@ private:
 		Operator('+', 2),
 		Operator('-', 2),
 		Operator('*', 3),
-		Operator('/', 3)
+		Operator('/', 3),
+		Operator('^', 4)
 	};
 
 	Operator GetOperator(std::string& token);

@@ -4,7 +4,6 @@
 
 extern "C" __declspec(dllexport) double _cdecl CalculateAt(char* expression, double xCoord)
 {
-	//std::string input = "(8954.523 + 214) * 7547";
 	std::string input = std::string(expression);
 	Parser parser;
 	Calculator calculator(parser);
